@@ -15,8 +15,8 @@ namespace BusinessLayer
             //foreach (TaskBL x in Automapper.Automapper.GetTasks())
             //    Console.WriteLine($"{x.Id}\t{x.isDone}\t{x.Text}");
 
-            foreach (var x in Automapper.Automapper.GetTasksOfList(1))
-                Console.WriteLine($"{x.Id}\t{x.isDone}\t{x.Text}");
+            //foreach (var x in BLManager.BLManager.GetTasksOfList(1))
+            //    Console.WriteLine($"{x.Id}\t{x.isDone}\t{x.Text}");
         }
     }
 }
