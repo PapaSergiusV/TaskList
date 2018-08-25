@@ -5,13 +5,13 @@ using DataAccessLayer.Entities;
 
 namespace DataAccessLayer.Operations
 {
-    class DBManager
+    public class DBManager
     {
-        private Context db;
-        public Operations<Task> Tasks;
-        public Operations<TList> TaskLists;
+        public static Context db;
+        public static Operations<Task> Tasks;
+        public static Operations<TList> TaskLists;
 
-        public DBManager()
+        static DBManager()
         {
             db = new Context();
             Tasks = new Operations<Task>(db, db.Tasks);

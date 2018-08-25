@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Operations
 {
-    class Operations<T> where T : class
+    public class Operations<T> where T : class
     {
         private Context db;
         private DbSet<T> table;

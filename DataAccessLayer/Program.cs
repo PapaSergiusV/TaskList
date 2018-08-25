@@ -8,7 +8,7 @@ namespace DataAccessLayer
     {
         static void Main(string[] args)
         {
-            DBManager db = new DBManager();
+            //DBManager db = new DBManager();
 
             //db.Tasks.Create(new Task() { isDone = false, Text = "Test" });
             //Console.WriteLine($"{db.Tasks.Read(5).Text}\t{db.Tasks.Read(5).isDone}");
@@ -18,8 +18,8 @@ namespace DataAccessLayer
 
             //db.Tasks.Delete(6);
 
-            foreach (var x in db.Tasks.ReadAll())
-                Console.WriteLine($"{x.Text}\t{x.isDone}");
+            //foreach (var x in db.Tasks.ReadAll())
+            //    Console.WriteLine($"{x.Text}\t{x.isDone}");
         }
     }
 }
