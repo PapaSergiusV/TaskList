@@ -1,4 +1,3 @@
 .vs/
 PresentationLayer/node_modules/
-PresentationLayer/wwwroot/assets/bundle.js.map
-PresentationLayer/wwwroot/assets/bundle.js
+PresentationLayer/wwwroot/assets/
