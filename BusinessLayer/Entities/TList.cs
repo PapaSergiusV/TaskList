@@ -8,6 +8,9 @@ namespace BusinessLayer.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        /// <summary>
+        /// Последовательность задач, в порядке, в каком будут выводиться задачи
+        /// </summary>
         public string ListId { get; set; }
     }
 }
