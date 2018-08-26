@@ -9,3 +9,8 @@ C:\Users\Сергей\Documents\Программирование\Web\TaskList\Pr
 C:\Users\Сергей\Documents\Программирование\Web\TaskList\PresentationLayer\bin\Debug\netcoreapp2.0\PresentationLayer.pdb
 C:\Users\Сергей\Documents\Программирование\Web\TaskList\PresentationLayer\obj\Debug\netcoreapp2.0\PresentationLayer.dll
 C:\Users\Сергей\Documents\Программирование\Web\TaskList\PresentationLayer\obj\Debug\netcoreapp2.0\PresentationLayer.pdb
+C:\Users\Сергей\Documents\Программирование\Web\TaskList\PresentationLayer\bin\Debug\netcoreapp2.0\BusinessLayer.dll
+C:\Users\Сергей\Documents\Программирование\Web\TaskList\PresentationLayer\bin\Debug\netcoreapp2.0\DataAccessLayer.dll
+C:\Users\Сергей\Documents\Программирование\Web\TaskList\PresentationLayer\bin\Debug\netcoreapp2.0\BusinessLayer.pdb
+C:\Users\Сергей\Documents\Программирование\Web\TaskList\PresentationLayer\bin\Debug\netcoreapp2.0\DataAccessLayer.pdb
+C:\Users\Сергей\Documents\Программирование\Web\TaskList\PresentationLayer\obj\Debug\netcoreapp2.0\PresentationLayer.csproj.CopyComplete

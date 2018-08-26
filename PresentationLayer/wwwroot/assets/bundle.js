@@ -882,7 +882,18 @@ var _Main2 = _interopRequireDefault(_Main);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom2.default.render(_react2.default.createElement(_Main2.default, null), document.getElementById('root'));
+var xhr = new XMLHttpRequest();
+var body = 'id=' + encodeURIComponent('1');
+xhr.open("POST", "/Tasks/GetTasksOfList", true);
+xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+var list = [];
+xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+        list = JSON.parse(xhr.responseText);
+        _reactDom2.default.render(_react2.default.createElement(_Main2.default, { list: list }), document.getElementById('root'));
+    }
+};
+xhr.send(body);
 
 /***/ }),
 /* 14 */
@@ -20405,12 +20416,20 @@ var Main = function (_Component) {
     }
 
     _createClass(Main, [{
-        key: 'render',
+        key: "render",
         value: function render() {
+            var list = this.props.list.map(function (x) {
+                return _react2.default.createElement(
+                    "div",
+                    { key: x.id },
+                    x.isDone ? "+ " : "- ",
+                    x.text
+                );
+            });
             return _react2.default.createElement(
-                'div',
+                "div",
                 null,
-                'React is working'
+                list
             );
         }
     }]);

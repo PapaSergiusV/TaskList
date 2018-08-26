@@ -32,6 +32,11 @@ namespace BusinessLayer
 
             //TListBL list = new TListBL() { Id = 1, Name = "Main", ListId = "1,7" };
             //BLManager.BLManager.UpdateTaskList(list);
+
+            //TaskBL x = BLManager.BLManager.ReadTask(1);
+            //Console.WriteLine(x.Text);
+
+            //BLManager.BLManager.UpdateTask(new TaskBL() { Id = 7, isDone = true, Text = "New test" });
         }
     }
 }

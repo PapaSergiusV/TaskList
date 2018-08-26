@@ -23,6 +23,19 @@ namespace BusinessLayer.BLManager
         public static void CreateTList(TListBL list) => DBManager.TaskLists.Create(Automapper.Automapper.ReverseTListBL(list));
 
         /// <summary>
+        /// Чтение задачи из БД
+        /// </summary>
+        /// <param name="id">Id задачи</param>
+        public static TaskBL ReadTask(int id) => Automapper.Automapper.GetTask(id);
+
+        /// <summary>
+        /// Чтение списка задач из БД
+        /// </summary>
+        /// <param name="id">Id списка задач</param>
+        /// <returns></returns>
+        public static TListBL ReadTList(int id) => Automapper.Automapper.GetTList(id);
+
+        /// <summary>
         /// Возвращает последовательность задач, принадлежищих списку задач
         /// </summary>
         /// <param name="id">Номер списка задач</param>

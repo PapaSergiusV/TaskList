@@ -2,6 +2,7 @@
 
 export default class Main extends Component {
     render() {
-        return (<div>React is working</div>);
+        var list = this.props.list.map(x => <div key={x.id}>{x.isDone? "+ " : "- "}{x.text}</div>);
+        return (<div>{list}</div>);
     }
 }

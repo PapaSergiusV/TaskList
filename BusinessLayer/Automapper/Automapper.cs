@@ -11,11 +11,12 @@ namespace BusinessLayer.Automapper
 {
     public class Automapper
     {
-        static Automapper()
-        {
-            Mapper.Initialize(cfg => cfg.CreateMap<Task, TaskBL>());
-            //Mapper.Initialize(cfg => cfg.CreateMap<TList, TListBL>());
-        }
+        // Mapper инициализируется сверху в Presentation layer
+        //static Automapper()
+        //{
+        //    Mapper.Initialize(cfg => cfg.CreateMap<Task, TaskBL>());
+        //}
+
         /// <summary>
         /// Преобразование Task -> TaskBL
         /// </summary>
