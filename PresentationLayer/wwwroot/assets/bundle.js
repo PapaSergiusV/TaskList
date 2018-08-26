@@ -20422,7 +20422,7 @@ var Main = function (_Component) {
                 return _react2.default.createElement(
                     "div",
                     { key: x.id },
-                    x.isDone ? "+ " : "- ",
+                    x.isDone ? "+ " : "-  ",
                     x.text
                 );
             });
