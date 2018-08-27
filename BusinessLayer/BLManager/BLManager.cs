@@ -89,9 +89,9 @@ namespace BusinessLayer.BLManager
         {
             TListBL list = Automapper.Automapper.GetTList(id);
             HashSet<TaskBL> tasks = new HashSet<TaskBL>();
-            if (list != null)
+            if (list != null && list.ListId.Length != 0)
             {
-                foreach (int i in list.ListId.Split(',').Where(x => char.IsDigit(x[0])).Select(x => int.Parse(x)))
+                foreach (int i in list.ListId.Split(',').Select(x => int.Parse(x)))
                 {
                     TaskBL x = Automapper.Automapper.GetTask(i);
                     if (x != null)
@@ -99,7 +99,7 @@ namespace BusinessLayer.BLManager
                 }
                 return new KeyValuePair<string, IEnumerable<TaskBL>>(list.Name, tasks);
             }
-            return new KeyValuePair<string, IEnumerable<TaskBL>>("", null);
+            return new KeyValuePair<string, IEnumerable<TaskBL>>(list.Name, null);
         }
         
         /// <summary>

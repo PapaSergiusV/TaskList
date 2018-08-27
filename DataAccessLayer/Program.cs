@@ -21,7 +21,7 @@ namespace DataAccessLayer
             //foreach (var x in db.Tasks.ReadAll())
             //    Console.WriteLine($"{x.Text}\t{x.isDone}");
 
-            //DBManager.TaskLists.Update(new TList() { Id = 1, Name = "Main", ListId = "1,7,8" });
+            //DBManager.TaskLists.Update(new TList() { Id = 1, Name = "Main", ListId = "2030,2031,2032" });
         }
     }
 }

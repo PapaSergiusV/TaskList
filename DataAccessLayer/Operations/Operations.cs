@@ -26,7 +26,12 @@ namespace DataAccessLayer.Operations
         public T Read(int id)
         {
             if (id > 0)
-                return table.Find(id);
+            {   
+                T item = table.Find(id);
+                //if (item != null)
+                //    db.Entry(item).State = EntityState.Deleted;
+                return item;
+            }
             else
                 return null;
         }
