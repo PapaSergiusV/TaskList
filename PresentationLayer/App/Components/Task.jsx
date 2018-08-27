@@ -13,7 +13,7 @@ export default class Task extends Component {
                 </div>
                 <div className="cell-buttons">
                     <i className="fas fa-check" onClick={this.taskIsDone}></i>
-                    <i className="far fa-trash-alt"></i>
+                    <i className="far fa-trash-alt" onClick={this.delete}></i>
                 </div>
             </div>    
         );
@@ -23,4 +23,6 @@ export default class Task extends Component {
         var res = !this.state.isDone;
         this.setState({ isDone: res });
     }
+
+    delete = () => this.props.delete(this.props.task.id);
 }

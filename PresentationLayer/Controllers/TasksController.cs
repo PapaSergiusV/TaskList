@@ -24,5 +24,13 @@ namespace PresentationLayer.Controllers
         {
             return Automapper.GetTasksNameOfList(int.Parse(id));
         }
+
+        public int CreateTaskInList(string text, string idOfList)
+        {
+            return BusinessLayer.BLManager.BLManager.CreateTaskInList(text, int.Parse(idOfList));
+        }
+
+        public void DelTask(string id, string idOfList) => 
+            BusinessLayer.BLManager.BLManager.DeleteTask(int.Parse(id), int.Parse(idOfList));
     }
 }

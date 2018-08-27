@@ -5,6 +5,7 @@ using System.Text;
 using BusinessLayer.Automapper;
 using BusinessLayer.Entities;
 using DataAccessLayer.Operations;
+using DataAccessLayer.Entities;
 
 namespace BusinessLayer.BLManager
 {
@@ -14,7 +15,23 @@ namespace BusinessLayer.BLManager
         /// Создание задачи в БД
         /// </summary>
         /// <param name="task">Задача не должна иметь инициализированного Id !</param>
-        public static void CreateTask(TaskBL task) => DBManager.Tasks.Create(Automapper.Automapper.ReverseTaskBL(task));
+        public static int CreateTask(TaskBL task) =>
+            DBManager.Tasks.Create(Automapper.Automapper.ReverseTaskBL(task)).Id;
+
+        /// <summary>
+        /// Создание задачи в БД с записью ее в лист и возвратом id задачи
+        /// </summary>
+        /// <param name="text">Текст задачи</param>
+        /// <param name="idOfList">Id листа</param>
+        /// <returns>Id задачи</returns>
+        public static int CreateTaskInList(string text, int idOfList)
+        {
+            int id = CreateTask(new TaskBL() { Text = text, isDone = false });
+            TListBL list = ReadTList(idOfList);
+            UpdateTaskList(new TListBL() { Id = list.Id, Name = list.Name, ListId = list.ListId + ',' + id.ToString() });
+            //DBManager.TaskLists.Update(new TList() { Id = list.Id, Name = list.Name, ListId = list.ListId + ',' + id.ToString() });
+            return id;
+        }
 
         /// <summary>
         /// Создание списка задач в БД
@@ -34,6 +51,12 @@ namespace BusinessLayer.BLManager
         /// <param name="id">Id списка задач</param>
         /// <returns></returns>
         public static TListBL ReadTList(int id) => Automapper.Automapper.GetTList(id);
+
+        /// <summary>
+        /// Возвращает последовательность всех листов
+        /// </summary>
+        /// <returns></returns>
+        public static IEnumerable<TListBL> ReadLists() => Automapper.Automapper.GetTLists();
 
         /// <summary>
         /// Возвращает последовательность задач, принадлежищих списку задач
@@ -111,7 +134,32 @@ namespace BusinessLayer.BLManager
         /// Удаление задачи из БД
         /// </summary>
         /// <param name="id">Id задачи</param>
-        public static void DeleteTask(int id) => DBManager.Tasks.Delete(id);
+        public static void DeleteTask(int id, int idOfList)// => DBManager.Tasks.Delete(id);
+        {
+            TListBL curList = ReadTList(idOfList);
+            IEnumerable<string> newIds = curList.ListId.Split(',').Select(x => int.Parse(x))
+                .Where(x => x != id).Select(x => x.ToString());
+
+            StringBuilder sb = new StringBuilder();
+            foreach (string newId in newIds)
+                sb.Append(newId + ',');
+            sb.Remove(sb.Length - 1, 1);
+
+            UpdateTaskList(new TListBL() { Id = curList.Id, Name = curList.Name, ListId = sb.ToString() });
+
+            bool belongsOtherList = false;
+            foreach (var list in ReadLists())
+            {
+                if (list.Id != idOfList && list.ListId.Split(',').Select(x => int.Parse(x)).Contains(id))
+                {
+                    belongsOtherList = true;
+                    break;
+                }
+            }
+
+            if (!belongsOtherList)
+                DBManager.Tasks.Delete(id);
+        }
 
         /// <summary>
         /// Удаление списка задач из БД

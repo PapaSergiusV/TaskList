@@ -16,10 +16,11 @@ namespace DataAccessLayer.Operations
             table = contextTable;
         }
 
-        public void Create(T item)
+        public T Create(T item)
         {
             table.Add(item);
             db.SaveChanges();
+            return item;
         }
 
         public T Read(int id)
@@ -37,6 +38,8 @@ namespace DataAccessLayer.Operations
 
         public void Update(T item)
         {
+            //DbContext.Entry(xTestTypeOld).State = EntityState.Deleted;
+            db.Entry(item).State = EntityState.Deleted;
             table.Update(item);
             db.SaveChanges();
         }
