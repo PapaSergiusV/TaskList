@@ -56,6 +56,28 @@ namespace BusinessLayer.BLManager
             }
             return res;
         }
+
+        /// <summary>
+        /// Возвращает последовательность задач, принадлежищих списку задач, и имя списка задач
+        /// </summary>
+        /// <param name="id">Номер списка задач</param>
+        /// <returns></returns>
+        public static KeyValuePair<string, IEnumerable<TaskBL>> GetTasksNameOfList(int id)
+        {
+            TListBL list = Automapper.Automapper.GetTList(id);
+            HashSet<TaskBL> tasks = new HashSet<TaskBL>();
+            if (list != null)
+            {
+                foreach (int i in list.ListId.Split(',').Where(x => char.IsDigit(x[0])).Select(x => int.Parse(x)))
+                {
+                    TaskBL x = Automapper.Automapper.GetTask(i);
+                    if (x != null)
+                        tasks.Add(x);
+                }
+                return new KeyValuePair<string, IEnumerable<TaskBL>>(list.Name, tasks);
+            }
+            return new KeyValuePair<string, IEnumerable<TaskBL>>("", null);
+        }
         
         /// <summary>
         /// Обновление списка задач в БД

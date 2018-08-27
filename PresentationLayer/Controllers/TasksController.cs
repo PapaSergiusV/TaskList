@@ -19,5 +19,10 @@ namespace PresentationLayer.Controllers
         {
             return Automapper.GetTasksOfList(int.Parse(id));
         }
+
+        public KeyValuePair<string, IEnumerable<TaskPL>> GetTasksNameOfList(string id)
+        {
+            return Automapper.GetTasksNameOfList(int.Parse(id));
+        }
     }
 }

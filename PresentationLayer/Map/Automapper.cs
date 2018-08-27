@@ -38,5 +38,8 @@ namespace PresentationLayer.Map
         /// <param name="id">Id листа</param>
         /// <returns></returns>
         public static IEnumerable<TaskPL> GetTasksOfList(int id) => Mapper.Map<IEnumerable<TaskPL>>(BLManager.GetTasksOfList(id));
+
+        public static KeyValuePair<string, IEnumerable<TaskPL>> GetTasksNameOfList(int id) =>
+            Mapper.Map<KeyValuePair<string, IEnumerable<TaskPL>>>(BLManager.GetTasksNameOfList(id));
     }
 }

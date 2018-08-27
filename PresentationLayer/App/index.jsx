@@ -4,7 +4,7 @@ import App from './Components/Main.jsx'
 
 var xhr = new XMLHttpRequest();
 var body = 'id=' + encodeURIComponent('1');
-xhr.open("POST", "/Tasks/GetTasksOfList", true);
+xhr.open("POST", "/Tasks/GetTasksNameOfList", true);
 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 var list = [];
 xhr.onreadystatechange = (function () {
