@@ -22,6 +22,14 @@ namespace DataAccessLayer
             //    Console.WriteLine($"{x.Text}\t{x.isDone}");
 
             //DBManager.TaskLists.Update(new TList() { Id = 1, Name = "Main", ListId = "2045" });
+            //var time = DateTime.Now;
+            //DBManager.Tasks.Update(new Task()
+            //{
+            //    Id = 2057,
+            //    isDone = false,
+            //    Text = "Ok",
+            //    Time = (time.ToShortTimeString() + " " + time.ToShortDateString())
+            //});
         }
     }
 }

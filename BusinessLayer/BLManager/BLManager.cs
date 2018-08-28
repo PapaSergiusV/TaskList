@@ -24,12 +24,13 @@ namespace BusinessLayer.BLManager
         /// <param name="text">Текст задачи</param>
         /// <param name="idOfList">Id листа</param>
         /// <returns>Id задачи</returns>
-        public static int CreateTaskInList(string text, int idOfList)
+        public static (int, string) CreateTaskInList(string text, int idOfList)
         {
-            int id = CreateTask(new TaskBL() { Text = text, isDone = false });
+            var time = DateTime.Now;
+            int id = CreateTask(new TaskBL() { Text = text, isDone = false, Time = $"{time.ToShortTimeString()} {time.ToShortDateString()}" });
             TListBL list = ReadTList(idOfList);
             UpdateTaskList(new TListBL() { Id = list.Id, Name = list.Name, ListId = list.ListId + ',' + id.ToString() });
-            return id;
+            return (id, $"{time.ToShortTimeString()} {time.ToShortDateString()}");
         }
 
         /// <summary>
@@ -119,9 +120,11 @@ namespace BusinessLayer.BLManager
         /// <param name="task">Задача BL</param>
         public static void UpdateTask(TaskBL task)
         {
+            var time = DateTime.Now;
             Task original = DBManager.Tasks.Read(task.Id);
             original.isDone = task.isDone;
             original.Text = task.Text;
+            original.Time = $"Update: {time.ToShortTimeString()} {time.ToShortDateString()}";
             DBManager.Tasks.Update(original);
         }
 

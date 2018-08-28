@@ -9,5 +9,6 @@ namespace PresentationLayer.Models
         public int Id { get; set; }
         public bool isDone { get; set; }
         public string Text { get; set; }
+        public string Time { get; set; }
     }
 }

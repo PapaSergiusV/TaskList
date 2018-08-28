@@ -25,7 +25,7 @@ namespace PresentationLayer.Controllers
             return Automapper.GetTasksNameOfList(int.Parse(id));
         }
 
-        public int CreateTaskInList(string text, string idOfList)
+        public (int, string) CreateTaskInList(string text, string idOfList)
         {
             return BusinessLayer.BLManager.BLManager.CreateTaskInList(text, int.Parse(idOfList));
         }

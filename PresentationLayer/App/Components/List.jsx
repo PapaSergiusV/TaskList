@@ -7,11 +7,12 @@ export default class List extends Component {
     state = {
         isEdited: false,
         name: this.props.list.key,
-        tasks: this.props.list.value
+        tasks: this.props.list.value,
+        minimized: false
     }
 
     render() {
-        var tasks = this.state.tasks.map(x => <Task key={x.id} task={x} delete={this.deleteTask} />);
+        var tasks = this.state.minimized ? null : this.state.tasks.map(x => <Task key={x.id} task={x} delete={this.deleteTask} />);
         var bottom = (this.state.isEdited ?
             <AddTask cancel={this.writeTask} addTask={this.addTask} /> :
             <div className="list-control">
@@ -20,7 +21,8 @@ export default class List extends Component {
             </div> );
         return (
             <div className="list">
-                <h2 className="h2">{this.state.name}</h2>
+                <h2 className="h2" ref="name" onDoubleClick={this.renameList}>{this.state.name}</h2>
+                <div className="minimize" onClick={this.minimize}><i className="fas fa-window-minimize"></i></div>
                 {tasks}
                 {bottom}
             </div>
@@ -40,9 +42,10 @@ export default class List extends Component {
 
         xhr.onreadystatechange = () => {
             if (xhr.readyState == 4 && xhr.status == 200) {
+                var obj = { item1: 0, item2: "" };
+                obj = JSON.parse(xhr.responseText);
                 var newTasks = this.state.tasks;
-                var newId = parseInt(xhr.responseText, 10);
-                newTasks.push({ id: newId, text: newText, isDone: false });
+                newTasks.push({ id: obj.item1, text: newText, isDone: false, time: obj.item2 });
                 this.setState({ tasks: newTasks });
                 this.writeTask();
             }
@@ -68,5 +71,15 @@ export default class List extends Component {
         }
 
         xhr.send(body);
+    }
+
+    minimize = () => this.setState({ minimized: !this.state.minimized });
+
+    renameList = () => {
+        this.refs.name.innerHTML =
+            '<form class="rename-list">' +
+            '<input class="rename-list" value=' + this.state.name + '></input>' +
+            //'<button class="rename-list" type="submit">Rename</button>' +
+            '</form>';
     }
 }

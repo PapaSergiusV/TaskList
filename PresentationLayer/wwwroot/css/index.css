@@ -1619,6 +1619,39 @@ body {
                     border: 1px solid #b92424
                 }
 
+.minimize {
+    position: absolute;
+    top: 16px;
+    right: 26px;
+    display: block;
+    border: 1px solid #666;
+    border-radius: 3px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 13px;
+    transition: .3s;
+    opacity: 0
+}
+
+.list:hover .minimize {
+    opacity: 1;
+}
+
+.minimize:hover {
+    background: rgba(0,0,0,.1)
+}
+
+input.rename-list {
+    background: none;
+    border: none;
+    outline: none;
+    width: 75%;
+    text-align: center;
+    padding: 0px;
+}
+
 button.list-button {
     width: 50%;
     margin-top: 5px;
@@ -1627,6 +1660,12 @@ button.list-button {
 .list-control textarea {
     width: 100%;
     padding: 5px;
+}
+
+.task-time {
+    font-size: 10px;
+    color: #777;
+    margin-top: 7px;
 }
 
 .img-responsive {

@@ -10,6 +10,7 @@ export default class Task extends Component {
             <div className="cell">
                 <div className={cellTextClass} >
                     {this.props.task.text}
+                    <div className="task-time">{this.props.task.time}</div>
                 </div>
                 <div className="cell-buttons">
                     <i className="fas fa-check" onClick={this.taskIsDone}></i>
