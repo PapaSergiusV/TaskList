@@ -13,12 +13,12 @@ export default class List extends Component {
 
     render() {
         var tasks = this.state.minimized ? null : this.state.tasks.map(x => <Task key={x.id} task={x} delete={this.deleteTask} />);
-        var bottom = (this.state.isEdited ?
+        var bottom = this.state.isEdited ?
             <AddTask cancel={this.writeTask} addTask={this.addTask} /> :
             <div className="list-control">
                 <button className="list-button" onClick={this.writeTask}>+ New task</button>
                 <button className="list-button">Delete list</button>
-            </div> );
+            </div>;
         return (
             <div className="list">
                 <ListName name={this.props.list.key} />
@@ -74,12 +74,4 @@ export default class List extends Component {
     }
 
     minimize = () => this.setState({ minimized: !this.state.minimized });
-
-    //renameList = () => {
-    //    this.refs.name.innerHTML =
-    //        '<form class="rename-list">' +
-    //        '<input class="rename-list" value=' + this.state.name + '></input>' +
-    //        //'<button class="rename-list" type="submit">Rename</button>' +
-    //        '</form>';
-    //}
 }

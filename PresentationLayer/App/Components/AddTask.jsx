@@ -7,8 +7,8 @@ export default class AddTask extends Component {
     render() {
         return (
             <div className="list-control">
-                <textarea ref="field" required="required" placeholder="Write new task" onChange={this.handleTyping}></textarea>
-                <button className="list-button" onClick={this.addTask}>Create</button>
+                <textarea required="required" placeholder="Write new task" onChange={this.handleTyping}>{this.state.typed}</textarea>
+                <button className="list-button" ref="createButton" onClick={this.addTask}>Create</button>
                 <button className="list-button" onClick={this.props.cancel}>Cancel</button>
             </div>
         );
@@ -18,9 +18,8 @@ export default class AddTask extends Component {
         var text = this.state.typed;
         text = text.replace(/\s{2,}/g, ' ').replace(/^\s+|>|</g, '');
         if (text.length > 0) {
+            this.refs.createButton.innerHTML = '<i class="fas fa-spinner"></i>';
             this.props.addTask(text);
-            this.refs.field.value = '';
-            this.setState({ typed: '' });
         }
     }
 

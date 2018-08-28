@@ -13,7 +13,7 @@ export default class Task extends Component {
                     <div className="task-time">{this.props.task.time}</div>
                 </div>
                 <div className="cell-buttons">
-                    <i className="fas fa-check" onClick={this.taskIsDone}></i>
+                    <i ref="checkButton" className="fas fa-check" onClick={this.taskIsDone}></i>
                     <i ref="delButton" className="far fa-trash-alt" onClick={this.delete}></i>
                 </div>
             </div>    
@@ -21,8 +21,25 @@ export default class Task extends Component {
     }
 
     taskIsDone = () => {
+        this.refs.checkButton.className = "fas fa-spinner";
         var res = !this.state.isDone;
-        this.setState({ isDone: res });
+        // Server
+        var xhr = new XMLHttpRequest();
+        var body = 'id=' + encodeURIComponent(this.props.task.id)
+            + '&text=' + encodeURIComponent(this.props.task.text)
+            + '&isDone=' + encodeURIComponent(res);
+        xhr.open("POST", "/Tasks/TaskChangeStatus", true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                if (xhr.responseText == 'true')
+                    this.setState({ isDone: res });
+            }
+            this.refs.checkButton.className = "fas fa-check";
+        }
+
+        xhr.send(body);
     }
 
     delete = () => {

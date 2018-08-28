@@ -35,5 +35,14 @@ namespace PresentationLayer.Controllers
 
         public bool RenameList(string name, string idOfList) =>
             BusinessLayer.BLManager.BLManager.RenameList(name, int.Parse(idOfList));
+
+        public bool TaskChangeStatus(string id, string text, string isDone) =>
+            BusinessLayer.BLManager.BLManager.UpdateTask(Map.Automapper.ReverseTaskBL(new TaskPL()
+            {
+                Id = int.Parse(id),
+                Text = text,
+                isDone = (isDone == "true"),
+                Time = ""
+            }));
     }
 }

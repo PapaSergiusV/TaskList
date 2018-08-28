@@ -118,14 +118,14 @@ namespace BusinessLayer.BLManager
         /// Обновление задачи в БД
         /// </summary>
         /// <param name="task">Задача BL</param>
-        public static void UpdateTask(TaskBL task)
+        public static bool UpdateTask(TaskBL task)
         {
             var time = DateTime.Now;
             Task original = DBManager.Tasks.Read(task.Id);
             original.isDone = task.isDone;
             original.Text = task.Text;
             original.Time = $"Update: {time.ToShortTimeString()} {time.ToShortDateString()}";
-            DBManager.Tasks.Update(original);
+            return DBManager.Tasks.Update(original);
         }
 
         /// <summary>
