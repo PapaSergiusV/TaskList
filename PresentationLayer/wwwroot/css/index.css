@@ -1518,7 +1518,7 @@ body input:focus:required:invalid, body textarea:focus:required:invalid {
 }
 
 body input:required:valid, body textarea:required:valid {
-    color: #666
+    color: #000
 }
 
 body, html {
@@ -1627,7 +1627,6 @@ button.list-button {
 .list-control textarea {
     width: 100%;
     padding: 5px;
-    margin-top: 5px;
 }
 
 .img-responsive {

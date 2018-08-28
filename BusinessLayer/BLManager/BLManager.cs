@@ -29,7 +29,6 @@ namespace BusinessLayer.BLManager
             int id = CreateTask(new TaskBL() { Text = text, isDone = false });
             TListBL list = ReadTList(idOfList);
             UpdateTaskList(new TListBL() { Id = list.Id, Name = list.Name, ListId = list.ListId + ',' + id.ToString() });
-            //DBManager.TaskLists.Update(new TList() { Id = list.Id, Name = list.Name, ListId = list.ListId + ',' + id.ToString() });
             return id;
         }
 
@@ -120,7 +119,10 @@ namespace BusinessLayer.BLManager
         /// <param name="task">Задача BL</param>
         public static void UpdateTask(TaskBL task)
         {
-            DBManager.Tasks.Update(Automapper.Automapper.ReverseTaskBL(task));
+            Task original = DBManager.Tasks.Read(task.Id);
+            original.isDone = task.isDone;
+            original.Text = task.Text;
+            DBManager.Tasks.Update(original);
         }
 
         /// <summary>
@@ -137,7 +139,7 @@ namespace BusinessLayer.BLManager
         /// Удаление задачи из БД
         /// </summary>
         /// <param name="id">Id задачи</param>
-        public static void DeleteTask(int id, int idOfList)// => DBManager.Tasks.Delete(id);
+        public static bool DeleteTask(int id, int idOfList)
         {
             TListBL curList = ReadTList(idOfList);
             IEnumerable<string> newIds = curList.ListId.Split(',').Select(x => int.Parse(x))
@@ -161,7 +163,8 @@ namespace BusinessLayer.BLManager
             }
 
             if (!belongsOtherList)
-                DBManager.Tasks.Delete(id);
+                return DBManager.Tasks.Delete(id);
+            return true;
         }
 
         /// <summary>

@@ -53,15 +53,15 @@ export default class List extends Component {
         xhr.open("POST", "/Tasks/DelTask", true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-        // Добавить подтверждение удаления
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                console.log(xhr.responseText);
+                id = parseInt(id);
+                var res = this.state.tasks.filter(x => x.id != id);
+                this.setState({ tasks: res });
+            }
+        }
 
         xhr.send(body);
-
-        id = parseInt(id);
-        console.log(id);
-        console.log(this.state.tasks[0].id);
-        var res = this.state.tasks.filter(x => x.id != id);
-        console.log(res);
-        this.setState({ tasks: res });
     }
 }

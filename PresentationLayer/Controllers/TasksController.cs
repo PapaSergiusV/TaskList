@@ -30,7 +30,7 @@ namespace PresentationLayer.Controllers
             return BusinessLayer.BLManager.BLManager.CreateTaskInList(text, int.Parse(idOfList));
         }
 
-        public void DelTask(string id, string idOfList) => 
+        public bool DelTask(string id, string idOfList) => 
             BusinessLayer.BLManager.BLManager.DeleteTask(int.Parse(id), int.Parse(idOfList));
     }
 }
