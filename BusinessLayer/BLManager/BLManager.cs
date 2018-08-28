@@ -90,7 +90,7 @@ namespace BusinessLayer.BLManager
             HashSet<TaskBL> tasks = new HashSet<TaskBL>();
             if (list != null && list.ListId.Length != 0)
             {
-                foreach (int i in list.ListId.Split(',').Select(x => int.Parse(x)))
+                foreach (int i in list.ListId.Split(',').Where(x => x != string.Empty).Select(x => int.Parse(x)))
                 {
                     TaskBL x = Automapper.Automapper.GetTask(i);
                     if (x != null)
@@ -142,13 +142,14 @@ namespace BusinessLayer.BLManager
         public static bool DeleteTask(int id, int idOfList)
         {
             TListBL curList = ReadTList(idOfList);
-            IEnumerable<string> newIds = curList.ListId.Split(',').Select(x => int.Parse(x))
+            IEnumerable<string> newIds = curList.ListId.Split(',').Where(x => x != string.Empty).Select(x => int.Parse(x))
                 .Where(x => x != id).Select(x => x.ToString());
 
             StringBuilder sb = new StringBuilder();
             foreach (string newId in newIds)
                 sb.Append(newId + ',');
-            sb.Remove(sb.Length - 1, 1);
+            if (sb.Length > 0)
+                sb.Remove(sb.Length - 1, 1);
 
             UpdateTaskList(new TListBL() { Id = curList.Id, Name = curList.Name, ListId = sb.ToString() });
 

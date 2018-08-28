@@ -4,7 +4,11 @@ import AddTask from './AddTask.jsx';
 
 export default class List extends Component {
 
-    state = { isEdited: false, name: this.props.list.key, tasks: this.props.list.value }
+    state = {
+        isEdited: false,
+        name: this.props.list.key,
+        tasks: this.props.list.value
+    }
 
     render() {
         var tasks = this.state.tasks.map(x => <Task key={x.id} task={x} delete={this.deleteTask} />);
@@ -55,10 +59,11 @@ export default class List extends Component {
 
         xhr.onreadystatechange = () => {
             if (xhr.readyState == 4 && xhr.status == 200) {
-                console.log(xhr.responseText);
-                id = parseInt(id);
-                var res = this.state.tasks.filter(x => x.id != id);
-                this.setState({ tasks: res });
+                if (xhr.responseText == 'true') {
+                    id = parseInt(id);
+                    var res = this.state.tasks.filter(x => x.id != id);
+                    this.setState({ tasks: res });
+                }
             }
         }
 

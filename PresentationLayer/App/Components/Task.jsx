@@ -2,7 +2,7 @@
 
 export default class Task extends Component {
 
-    state = { isDone: this.props.task.isDone }
+    state = { isDone: this.props.task.isDone, deleted: false }
 
     render() {
         var cellTextClass = this.state.isDone ? "cell-text cell-text-done" : "cell-text";
@@ -13,7 +13,7 @@ export default class Task extends Component {
                 </div>
                 <div className="cell-buttons">
                     <i className="fas fa-check" onClick={this.taskIsDone}></i>
-                    <i className="far fa-trash-alt" onClick={this.delete}></i>
+                    <i ref="delButton" className="far fa-trash-alt" onClick={this.delete}></i>
                 </div>
             </div>    
         );
@@ -24,5 +24,11 @@ export default class Task extends Component {
         this.setState({ isDone: res });
     }
 
-    delete = () => this.props.delete(this.props.task.id);
+    delete = () => {
+        if (!this.state.deleted) {
+            this.setState({ deleted: true });
+            this.refs.delButton.className = "fas fa-spinner";
+            this.props.delete(this.props.task.id);
+        }
+    }
 }
