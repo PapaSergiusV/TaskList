@@ -41,10 +41,11 @@ namespace DataAccessLayer.Operations
         /// получить отслеживаемый элемент, изменить его и передать в эту функцию
         /// </summary>
         /// <param name="item"></param>
-        public void Update(T item)
+        /// <returns>true - если успешно</returns>
+        public bool Update(T item)
         {
             table.Update(item);
-            db.SaveChanges();
+            return db.SaveChanges() == 1;
         }
 
         public bool Delete(int id)

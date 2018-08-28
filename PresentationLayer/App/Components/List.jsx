@@ -1,12 +1,12 @@
 ﻿import React, { Component } from 'react';
 import Task from './Task.jsx';
 import AddTask from './AddTask.jsx';
+import ListName from './ListName.jsx';
 
 export default class List extends Component {
 
     state = {
         isEdited: false,
-        name: this.props.list.key,
         tasks: this.props.list.value,
         minimized: false
     }
@@ -21,7 +21,7 @@ export default class List extends Component {
             </div> );
         return (
             <div className="list">
-                <h2 className="h2" ref="name" onDoubleClick={this.renameList}>{this.state.name}</h2>
+                <ListName name={this.props.list.key} />
                 <div className="minimize" onClick={this.minimize}><i className="fas fa-window-minimize"></i></div>
                 {tasks}
                 {bottom}
@@ -75,11 +75,11 @@ export default class List extends Component {
 
     minimize = () => this.setState({ minimized: !this.state.minimized });
 
-    renameList = () => {
-        this.refs.name.innerHTML =
-            '<form class="rename-list">' +
-            '<input class="rename-list" value=' + this.state.name + '></input>' +
-            //'<button class="rename-list" type="submit">Rename</button>' +
-            '</form>';
-    }
+    //renameList = () => {
+    //    this.refs.name.innerHTML =
+    //        '<form class="rename-list">' +
+    //        '<input class="rename-list" value=' + this.state.name + '></input>' +
+    //        //'<button class="rename-list" type="submit">Rename</button>' +
+    //        '</form>';
+    //}
 }

@@ -1643,6 +1643,10 @@ body {
     background: rgba(0,0,0,.1)
 }
 
+div.rename-list {
+    position: relative;
+}
+
 input.rename-list {
     background: none;
     border: none;
@@ -1650,6 +1654,16 @@ input.rename-list {
     width: 75%;
     text-align: center;
     padding: 0px;
+}
+
+button.rename-list {
+    position: absolute;
+    font-size: 13px;
+    top: 4px;
+    right: 5px;
+    z-index: 2;
+    width: 45px;
+    text-align: center;
 }
 
 button.list-button {

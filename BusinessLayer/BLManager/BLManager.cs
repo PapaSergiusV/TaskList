@@ -176,5 +176,12 @@ namespace BusinessLayer.BLManager
         /// </summary>
         /// <param name="id">Id списка задач</param>
         public static void DeleteTList(int id) => DBManager.TaskLists.Delete(id);
+
+        public static bool RenameList(string name, int id)
+        {
+            TList original = DBManager.TaskLists.Read(id);
+            original.Name = name;
+            return DBManager.TaskLists.Update(original);
+        }
     }
 }

@@ -32,5 +32,8 @@ namespace PresentationLayer.Controllers
 
         public bool DelTask(string id, string idOfList) => 
             BusinessLayer.BLManager.BLManager.DeleteTask(int.Parse(id), int.Parse(idOfList));
+
+        public bool RenameList(string name, string idOfList) =>
+            BusinessLayer.BLManager.BLManager.RenameList(name, int.Parse(idOfList));
     }
 }
