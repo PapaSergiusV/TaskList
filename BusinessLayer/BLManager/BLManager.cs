@@ -108,7 +108,10 @@ namespace BusinessLayer.BLManager
         /// <param name="list">Список задач BL</param>
         public static void UpdateTaskList(TListBL list)
         {
-            DBManager.TaskLists.Update(Automapper.Automapper.ReverseTListBL(list));
+            TList original = DBManager.TaskLists.Read(list.Id);
+            original.ListId = list.ListId;
+            original.Name = list.Name;
+            DBManager.TaskLists.Update(original);
         }
 
         /// <summary>

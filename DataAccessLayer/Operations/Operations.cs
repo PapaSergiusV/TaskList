@@ -44,8 +44,9 @@ namespace DataAccessLayer.Operations
         public void Update(T item)
         {
             //DbContext.Entry(xTestTypeOld).State = EntityState.Deleted;
-            db.Entry(item).State = EntityState.Deleted;
+            //db.Entry(item).State = EntityState.Deleted;
             table.Update(item);
+            //table.FromSql<T>("UPDATE dbo.TaskLists SET ListId='2030,2032,2033,2034,2035,2036' WHERE Id = 1");
             db.SaveChanges();
         }
 
