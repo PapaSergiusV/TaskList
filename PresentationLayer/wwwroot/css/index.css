@@ -1536,7 +1536,7 @@ body {
 }
 
 .container-fluid {
-    padding-top: 50px;
+    padding-top: 65px;
     background: -webkit-linear-gradient(45deg,#eecfba,#c5dde8);
     background: -o-linear-gradient(45deg,#eecfba,#c5dde8);
     background: linear-gradient(45deg,#eecfba,#c5dde8);
@@ -1679,6 +1679,23 @@ button.list-button {
     font-size: 10px;
     color: #777;
     margin-top: 7px;
+}
+
+.navbar {
+    position: fixed;
+    z-index: 2;
+    height: 50px;
+    top: 0;
+    left: 0;
+    background: #333;
+    color: #fefefe;
+    padding-left: 25px;
+    width: 100%;
+}
+
+.title {
+    line-height: 50px;
+    margin: 0px;
 }
 
 .img-responsive {

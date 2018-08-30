@@ -7,7 +7,7 @@ export default class AddTask extends Component {
     render() {
         return (
             <div className="list-control">
-                <textarea required="required" placeholder="Write new task" onChange={this.handleTyping}>{this.state.typed}</textarea>
+                <textarea required="required" placeholder="Write new task" onChange={this.handleTyping}></textarea>
                 <button className="list-button" ref="createButton" onClick={this.addTask}>Create</button>
                 <button className="list-button" onClick={this.props.cancel}>Cancel</button>
             </div>
