@@ -1,2 +1,3 @@
 # TaskList
-TaskList (React + ASP.NET + Entity Framework)
+Учебный проект. Клон Trello. 
+Используемые технологии: React + Redux + ASP.NET + Entity Framework 
