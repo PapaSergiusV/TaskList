@@ -2,8 +2,9 @@
 import Task from './Task.jsx';
 import AddTask from './AddTask.jsx';
 import ListName from './ListName.jsx';
+import { connect } from 'react-redux';
 
-export default class List extends Component {
+class List extends Component {
 
     state = {
         isEdited: false,
@@ -12,6 +13,7 @@ export default class List extends Component {
     }
 
     render() {
+        console.log(this.props);
         var tasks = this.state.minimized ? null : this.state.tasks.map(x => <Task key={x.id} task={x} delete={this.deleteTask} />);
         var bottom = this.state.isEdited ?
             <AddTask cancel={this.writeTask} addTask={this.addTask} /> :
@@ -75,3 +77,5 @@ export default class List extends Component {
 
     minimize = () => this.setState({ minimized: !this.state.minimized });
 }
+
+export default connect(({ test }) => ({ test }))(List);
