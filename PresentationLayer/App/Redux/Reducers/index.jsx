@@ -2,5 +2,5 @@
 import listReducer from './listReducer.jsx';
 
 export default combineReducers({
-    test: listReducer
+    lists: listReducer
 });

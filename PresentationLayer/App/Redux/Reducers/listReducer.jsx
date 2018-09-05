@@ -1,6 +1,10 @@
-﻿import getData from './GetData.jsx';
+﻿export default (lists = { key: "", value: [] }, action) => {
 
-export default (test = { key: "", value: [] }, action) => {
-    //test = getData.getTasksNameOfList(1);
-    return test;
+    const { type } = action;
+
+    switch (type) {
+        case 'GET_LISTS': return { key: "xxx", value: [] };
+    }
+
+    return lists;
 }

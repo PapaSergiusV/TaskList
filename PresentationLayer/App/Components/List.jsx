@@ -3,6 +3,7 @@ import Task from './Task.jsx';
 import AddTask from './AddTask.jsx';
 import ListName from './ListName.jsx';
 import { connect } from 'react-redux';
+import { getLists } from '../Redux/ActionCreators/ACs.jsx';
 
 class List extends Component {
 
@@ -76,6 +77,10 @@ class List extends Component {
     }
 
     minimize = () => this.setState({ minimized: !this.state.minimized });
+
+    componentDidMount() {
+        this.props.getLists();
+    }
 }
 
-export default connect(({ test }) => ({ test }))(List);
+export default connect(({ lists }) => ({ lists }), { getLists })(List);
